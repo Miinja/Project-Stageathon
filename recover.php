@@ -31,20 +31,23 @@ if (isset($_POST['submit'])) {
             $stmt->bindParam(':token', $token, PDO::PARAM_STR);
             $stmt->execute();
 
+            // Charger la configuration SMTP
+            $smtp_config = require 'includes/smtp_config.php';
+
             // Envoyer l'email de récupération
             $mail = new PHPMailer(true);
             try {
                 // Configuration du serveur SMTP
                 $mail->isSMTP();
-                $mail->Host = 'smtp.example.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'your_email@example.com';
-                $mail->Password = 'your_email_password';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
+                $mail->Host = $smtp_config['host'];
+                $mail->SMTPAuth = $smtp_config['smtp_auth'];
+                $mail->Username = $smtp_config['username'];
+                $mail->Password = $smtp_config['password'];
+                $mail->SMTPSecure = $smtp_config['smtp_secure'];
+                $mail->Port = $smtp_config['port'];
 
                 // Destinataires
-                $mail->setFrom('your_email@example.com', 'Stageathon');
+                $mail->setFrom($smtp_config['username'], 'Stageathon');
                 $mail->addAddress($email);
 
                 // Contenu de l'email

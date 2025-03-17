@@ -1,0 +1,7 @@
+RewriteEngine On
+
+
+# Rediriger vers 404.html si le fichier ou dossier n'existe pas
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /includes/404.html [L]
