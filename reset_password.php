@@ -6,6 +6,10 @@ $db = DataBaseLinker::getConnexion();
 
 $token_valid = false;
 
+// Supprimer les tokens expirés conformément aux RGPD (après 1 jours)
+$stmt = $db->prepare("DELETE FROM password_resets WHERE created_at < (NOW() - INTERVAL 1 DAY)");
+$stmt->execute();
+
 if (isset($_GET['token'])) {
     $token = $_GET['token'];
 

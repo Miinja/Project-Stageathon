@@ -6,6 +6,11 @@ $db = DataBaseLinker::getConnexion();
 $max_attempts = 5;
 $lockout_time = 15; // in minutes
 
+// Clean up old login attempts
+$stmt = $db->prepare("DELETE FROM login_attempts WHERE attempt_time < (NOW() - INTERVAL :lockout_time MINUTE)");
+$stmt->bindParam(':lockout_time', $lockout_time, PDO::PARAM_INT);
+$stmt->execute();
+
 function getIp() {
     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
         return $_SERVER['HTTP_CLIENT_IP'];
