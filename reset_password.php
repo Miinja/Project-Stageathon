@@ -56,57 +56,54 @@ if (isset($_GET['token'])) {
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Réinitialisation de mot de passe | Stage'athon</title>
-    <link rel="icon" href="favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="logo" style="text-align: center; margin-top: 20px;">
-    <img src="logo.svg" alt="Logo JB de la Salle" width="125px"> 
-    <h1 style="color: black; font-family: 'Arial', sans-serif; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">
-        Stage'<span>athon</span>
-    </h1>
-</div>
-<div class="login">
-    <div class="photo"></div>
-    <span><h3>Réinitialisation de mot de passe</h3></span>
-    <br>
-    <?php
-    if (isset($msg)) {
-        echo '<br>';
-        echo '<br>';
-        echo '<br>';
-        echo '<div class="alert alert-danger">' . $msg . '</div>';
-        echo '<br>';
-        echo '<br>';
-        echo '<br>';
-    }
-    ?>
-    <?php if ($token_valid): ?>
-    <form method="POST" action="reset_password.php?token=<?php echo $token; ?>" id="reset-form">
-        <div id="p" class="form-group">
-            <input id="new_password" spellcheck=false class="form-control" name="new_password" type="password" size="18" alt="login" required>
-            <span class="form-highlight"></span>
-            <span class="form-bar"></span>
-            <label for="new_password" class="float-label">Nouveau mot de passe</label>
+    <head>
+        <meta charset="UTF-8">
+        <title>Réinitialisation de mot de passe | Stage'athon</title>
+        <link rel="icon" href="favicon.png" type="image/x-icon">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="logo" style="text-align: center; margin-top: 20px;">
+            <img src="logo.svg" alt="Logo JB de la Salle" width="125px"> 
+            <h1 style="color: black; font-family: 'Arial', sans-serif; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">
+                Stage'<span>athon</span>
+            </h1>
         </div>
-        <div id="p" class="form-group">
-            <input id="confirm_password" spellcheck=false class="form-control" name="confirm_password" type="password" size="18" alt="login" required>
-            <span class="form-highlight"></span>
-            <span class="form-bar"></span>
-            <label for="confirm_password" class="float-label">Confirmer le mot de passe</label>
+        <div class="login">
+            <div class="photo"></div>
+            <span><h3>Réinitialisation de mot de passe</h3></span>
+            <br>
+            <?php
+            if (isset($msg)) {
+                echo '<br>';
+                echo '<br>';
+                echo '<br>';
+                echo '<div class="alert alert-danger">' . $msg . '</div>';
+                echo '<br>';
+                echo '<br>';
+                echo '<br>';
+            }
+            ?>
+            <?php if ($token_valid): ?>
+            <form method="POST" action="reset_password.php?token=<?php echo $token; ?>" id="reset-form">
+                <div id="p" class="form-group">
+                    <input id="new_password" spellcheck=false class="form-control" name="new_password" type="password" size="18" alt="login" required>
+                    <span class="form-highlight"></span>
+                    <span class="form-bar"></span>
+                    <label for="new_password" class="float-label">Nouveau mot de passe</label>
+                </div>
+                <div id="p" class="form-group">
+                    <input id="confirm_password" spellcheck=false class="form-control" name="confirm_password" type="password" size="18" alt="login" required>
+                    <span class="form-highlight"></span>
+                    <span class="form-bar"></span>
+                    <label for="confirm_password" class="float-label">Confirmer le mot de passe</label>
+                </div>
+                <div class="form-group">
+                    <button id="submit" type="submit" name="submit">Réinitialiser</button>
+                </div>
+            </form>
+            <?php endif; ?>
         </div>
-        <div class="form-group">
-            <button id="submit" type="submit" name="submit">Réinitialiser</button>
-        </div>
-    </form>
-    <?php endif; ?>
-</div>
-
-<p class="copyright">
-    <span>&copy; 2025 <a href="https://lasalle63.fr">La Salle 63</a>. Developed by <a href="https://sio.jbdelasalle.com" target="_blank">BTS SIO</a> (Promo. 2024-2025). All rights reserved.</span>
-</p>
-</body>
+        <?php include 'includes/footer.php'; ?>
+    </body>
 </html>

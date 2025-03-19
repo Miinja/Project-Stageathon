@@ -77,66 +77,63 @@ if (isset($_SESSION['email'])) {
     ?>
     <!DOCTYPE html>
     <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>Stage'athon | Bansac</title>
-        <link rel="icon" href="favicon.png" type="image/x-icon">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    </head>
-    <body>
-    <div class="logo" style="text-align: center; margin-top: 20px;">
-        <img src="logo.svg" alt="Logo JB de la Salle" width="125px"> 
-        <h1 style="color: black; font-family: 'Arial', sans-serif; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">
-            Stage'<span>athon</span>
-        </h1>
-    </div>
-    <div class="login">
-        <div class="photo"></div>
-        <span><h3>Portail de Connexion</h3></span>
-        <br>
-        <form method="POST" action="index.php" id="login-form">
-            <div id="u" class="form-group">
-                <input id="email" spellcheck=false class="form-control" name="email" type="email" size="18" alt="login" value="<?php echo isset($email) ? $email : ''; ?>" required>
-                <span class="form-highlight"></span>
-                <span class="form-bar"></span>
-                <label for="email" class="float-label">Email</label>
+        <head>
+            <meta charset="UTF-8">
+            <title>Stage'athon | Bansac</title>
+            <link rel="icon" href="favicon.png" type="image/x-icon">
+            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        </head>
+        <body>
+            <div class="logo" style="text-align: center; margin-top: 20px;">
+                <img src="logo.svg" alt="Logo JB de la Salle" width="125px"> 
+                <h1 style="color: black; font-family: 'Arial', sans-serif; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">
+                    Stage'<span>athon</span>
+                </h1>
             </div>
-            <div id="p" class="form-group">
-                <input id="password" class="form-control" spellcheck=false name="password" type="password" size="18" alt="login" required>
-                <span class="form-highlight"></span>
-                <span class="form-bar"></span>
-                <label for="password" class="float-label">Mot de passe</label>
-                <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" title="Révéler le mot de passe"></span>
+            <div class="login">
+                <div class="photo"></div>
+                <span><h3>Portail de Connexion</h3></span>
+                <br>
+                <form method="POST" action="index.php" id="login-form">
+                    <div id="u" class="form-group">
+                        <input id="email" spellcheck=false class="form-control" name="email" type="email" size="18" alt="login" value="<?php echo isset($email) ? $email : ''; ?>" required>
+                        <span class="form-highlight"></span>
+                        <span class="form-bar"></span>
+                        <label for="email" class="float-label">Email</label>
+                    </div>
+                    <div id="p" class="form-group">
+                        <input id="password" class="form-control" spellcheck=false name="password" type="password" size="18" alt="login" required>
+                        <span class="form-highlight"></span>
+                        <span class="form-bar"></span>
+                        <label for="password" class="float-label">Mot de passe</label>
+                        <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" title="Révéler le mot de passe"></span>
+                    </div>
+                    <div class="form-group">
+                        <button id="submit" type="submit" name="submit">Connexion</button>
+                    </div><br>
+                </form>
+                <?php
+                    if (isset($msg)) {
+                        echo '<div class="alert">' . $msg . '</div>';
+                        echo '<br>';
+                        echo '<br>';
+                    }
+                    ?>
+                <br>
+                <span><a href="recover.php">Mot de passe oublié ?</a></span>
+                <br>
             </div>
-            <div class="form-group">
-                <button id="submit" type="submit" name="submit">Connexion</button>
-            </div><br>
-        </form>
-        <?php
-            if (isset($msg)) {
-                echo '<div class="alert">' . $msg . '</div>';
-                echo '<br>';
-                echo '<br>';
-            }
-            ?>
-        <br>
-        <span><a href="recover.php">Mot de passe oublié ?</a></span>
-        <br>
-    </div>
-
-    <p class="copyright">
-        <span>&copy; 2025 <a href="https://lasalle63.fr">La Salle 63</a>. Developed by <a href="https://sio.jbdelasalle.com" target="_blank">BTS SIO</a> (Promo. 2024-2025). All rights reserved.</span>
-    </p>
-    </body>
+            <?php include 'includes/footer.php'; ?>
+        </body>
     </html>
     <script>
-    document.querySelector('.toggle-password').addEventListener('click', function (e) {
-        const passwordField = document.querySelector('#password');
-        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordField.setAttribute('type', type);
-        this.classList.toggle('fa-eye-slash');
-    });
+        document.querySelector('.toggle-password').addEventListener('click', function (e) {
+            const passwordField = document.querySelector('#password');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
     </script>                                    
 <?php
 }
