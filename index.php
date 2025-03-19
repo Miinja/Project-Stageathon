@@ -62,8 +62,11 @@ if (isset($_SESSION['email'])) {
                         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                         $stmt->execute();
                     } else {
-                        $_SESSION['email'] = $email;
-                        header("Refresh:0");
+                        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $_SESSION['email'] = $user['email'];
+                        $_SESSION['role'] = $user['role'];
+                        header("Location: app/home.php");
+                        exit();
                     }
                 } catch (PDOException $e) {
                     $msg = "Erreur lors de la requête : " . $e->getMessage();
