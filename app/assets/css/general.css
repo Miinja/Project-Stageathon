@@ -125,23 +125,6 @@ main {
     color: #000;
 }
 
-.user-info {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-left: auto;
-}
-.role-icon {
+.user-info .role-icon {
     font-size: 1.5em;
-}
-.logout-button {
-    margin-left: auto;
-    padding: 5px 10px;
-    background-color: #f44336;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-.logout-button:hover {
-    background-color: #d32f2f;
 }
