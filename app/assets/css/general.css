@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+}
+
+header {
+    background-color: #8b8686;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.sidebar {
+    background-color: #333;
+    color: #fff;
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 60px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+main {
+    margin-left: 200px;
+    padding: 2rem;
+    width: calc(100% - 200px);
+}
+
+.content {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#Classes, #Classes ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+
+#Classes li {
+    display: block;
+    position: relative;
+    border-radius: 8px 8px 0 0;
+}
+
+#Classes ul li {
+    display: block;
+    border-radius: 0;
+}
+
+#Classes ul li:hover {
+    border-radius: 0;
+}
+
+#Classes ul li:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+#Classes ul {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s ease-in-out;
+}
+
+#Classes li:hover ul {
+    max-height: 15em;
+}
+
+#Classes a {
+    text-decoration: none;
+    display: block;
+    padding: 8px 0;
+    color: #fff;
+    font-family: Arial;
+}
+
+#Classes ul a {
+    padding: 8px 0;
+}
+
+#Classes li:hover li a {
+    color: #fff;
+    text-transform: inherit;
+}
+
+#Classes li:hover a, #Classes li li:hover a {
+    color: #000;
+}
+
+.user-info {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-left: auto;
+}
+.role-icon {
+    font-size: 1.5em;
+}
+.logout-button {
+    margin-left: auto;
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.logout-button:hover {
+    background-color: #d32f2f;
+}
