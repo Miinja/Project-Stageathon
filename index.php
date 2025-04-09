@@ -124,7 +124,7 @@ if (isset($_SESSION['email'])) {
                 <span><a href="recover.php">Mot de passe oublié ?</a></span>
                 <br>
             </div>
-            <?php include 'includes/footer.php'; ?>
+            <?php include 'app/includes/footer.php'; ?>
         </body>
     </html>
     <script>

@@ -25,8 +25,10 @@ function getRoleIcon($role) {
 </head>
 <body>
 <header class="bg-dark text-white p-3">
-    <div class="container d-flex justify-content-between align-items-center">
-        <h1 class="h3">Stageathon</h1>
+    <div class="container d-flex justify-content-center align-items-center">
+        <h1 class="h3 text-center">Stageathon</h1>
+    </div>
+    <div class="container d-flex justify-content-end align-items-center">
         <div class="user-info d-flex align-items-center">
             <span class="role-icon mr-2"><?php echo getRoleIcon($user_role); ?></span>
             <span class="user-email mr-3"><?php echo htmlspecialchars($user_email); ?></span>
@@ -34,17 +36,19 @@ function getRoleIcon($role) {
         </div>
     </div>
 </header>
-<nav class="sidebar bg-secondary text-white p-3">
-    <h2 class="h5">Tableau de bord</h2>
-    <ul id="Classes" class="list-unstyled">
-        <li><a href="#" class="text-white">Classes</a>
-            <ul class="list-unstyled pl-3">
-                <li><a href="#" class="text-white">BTS SIO</a></li>
-            </ul>
-        </li>
-        <li><a href="#" class="text-white">Déconnexion</a></li>
-    </ul>
-</nav>
+<div class="d-flex flex-column flex-md-row">
+    <nav class="navbar bg-secondary text-white d-flex flex-column p-3" style="width: 200px; min-height: 100vh;">
+        <h2 class="h5 text-white text-center">Tableau de bord</h2>
+        <ul id="Classes" class="navbar-nav flex-column">
+            <li class="nav-item"><a href="classes.php" class="nav-link text-white">Classes</a></li>
+            <li class="nav-item"><a href="logout.php" class="nav-link text-white">Déconnexion</a></li>
+        </ul>
+    </nav>
+    <div class="content flex-grow-1 p-3">
+        <!-- Contenu principal -->
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

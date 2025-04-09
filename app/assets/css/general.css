@@ -3,10 +3,12 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-    display: flex;
 }
 
+
+
 header {
+    position: fixed;
     background-color: #8b8686;
     color: #fff;
     padding: 1rem;
@@ -18,42 +20,6 @@ header h1 {
     margin: 0;
 }
 
-.sidebar {
-    background-color: #333;
-    color: #fff;
-    width: 200px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 60px;
-}
-
-.sidebar h2 {
-    text-align: center;
-    margin-top: 0;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    padding: 10px;
-    text-align: center;
-    position: relative;
-}
-
-.sidebar ul li a {
-    color: #fff;
-    text-decoration: none;
-    display: block;
-}
-
-.sidebar ul li a:hover {
-    background-color: #575757;
-}
 
 main {
     margin-left: 200px;
@@ -127,4 +93,63 @@ main {
 
 .user-info .role-icon {
     font-size: 1.5em;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav.navbar {
+    height: 100vh; 
+    background-color: #333;
+    border-right: 1px solid #444;
+    padding-top: 20px;
+}
+
+
+nav.navbar h2 {
+    margin-bottom: 20px;
+}
+
+
+nav.navbar .nav-link {
+    padding: 10px 15px;
+    color: #fff;
+    text-align: left;
+    text-decoration: none;
+    
+}
+
+nav.navbar .nav-link:hover {
+    background-color: #575757;
+    color: #fff;
+}
+
+
+.content {
+    background-color: #f4f4f4;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+
+@media (max-width: 768px) {
+    nav.navbar {
+        width: 100%; 
+        height: auto; 
+        border-right: none;
+        border-bottom: 1px solid #444;
+        
+    }
+
+    .content {
+        margin-top: 20px;
+    }
 }
