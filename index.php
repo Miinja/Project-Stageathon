@@ -23,7 +23,7 @@ function getIp() {
 
 $ip_address = getIp();
 
-if (isset($_SESSION['email'])) {
+if (isset($_SESSION['user_email'])) {
     header("Location: app/home.php");
     exit();
 } else {
@@ -63,8 +63,7 @@ if (isset($_SESSION['email'])) {
                         $stmt->execute();
                     } else {
                         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                        $_SESSION['email'] = $user['email'];
-                        $_SESSION['role'] = $user['role'];
+                        $_SESSION['user_email'] = $user['email'];
                         header("Location: app/home.php");
                         exit();
                     }
