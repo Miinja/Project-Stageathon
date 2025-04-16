@@ -2,7 +2,7 @@
 session_start();
 
 // Vérifiez si l'utilisateur est connecté
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['user_email'])) {
     header("Location: ../index.php");
     exit();
 }

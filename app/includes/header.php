@@ -1,6 +1,18 @@
 <?php
-$user_email = $_SESSION['email'] ?? 'Invité';
-$user_role = $_SESSION['role'] ?? 'Invité';
+
+$user_email = $_SESSION['user_email'] ?? null;
+
+require_once '../includes/DatabaseLinker.php';
+$db = DataBaseLinker::getConnexion();
+
+if ($user_email) {
+    $stmt = $db->prepare("SELECT role FROM account WHERE email = :email");
+    $stmt->bindParam(':email', $user_email, PDO::PARAM_STR);
+    $stmt->execute();
+    $user_role = $stmt->fetchColumn();
+} else {
+    $user_role = 'eleve';
+}
 
 function getRoleIcon($role) {
     switch ($role) {
@@ -13,6 +25,7 @@ function getRoleIcon($role) {
             return '🎓';
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -31,7 +44,7 @@ function getRoleIcon($role) {
     <div class="container d-flex justify-content-end align-items-center">
         <div class="user-info d-flex align-items-center">
             <span class="role-icon mr-2"><?php echo getRoleIcon($user_role); ?></span>
-            <span class="user-email mr-3"><?php echo htmlspecialchars($user_email); ?></span>
+            <span class="user-email mr-3"><?php echo $user_email; ?></span>
             <a href="logout.php" class="btn btn-danger">Déconnexion</a>
         </div>
     </div>
