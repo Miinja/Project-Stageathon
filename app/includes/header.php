@@ -37,13 +37,16 @@ function getRoleIcon($role) {
     </div>
 </header>
 <div class="d-flex flex-column flex-md-row">
-    <nav class="navbar bg-secondary text-white d-flex flex-column p-3" style="width: 200px; min-height: 100vh;">
-        <h2 class="h5 text-white text-center">Tableau de bord</h2>
-        <ul id="Classes" class="navbar-nav flex-column">
-            <li class="nav-item"><a href="classes.php" class="nav-link text-white">Classes</a></li>
-            <li class="nav-item"><a href="logout.php" class="nav-link text-white">Déconnexion</a></li>
-        </ul>
-    </nav>
+<nav class="navbar bg-secondary text-white d-flex flex-column p-3" style="width: 200px; min-height: 100vh;">
+    <h2 class="h5 text-white text-center">Tableau de bord</h2>
+    <ul id="Classes" class="navbar-nav flex-column">
+        <li class="nav-item"><a href="classes.php" class="nav-link text-white">Classes</a></li>
+        <?php if ($user_role === 'eleve'): ?>
+            <li class="nav-item"><a href="preconv.php" class="nav-link text-white">Préconvention</a></li>
+        <?php endif; ?>
+        <li class="nav-item"><a href="logout.php" class="nav-link text-white">Déconnexion</a></li>
+    </ul>
+</nav>
     <div class="content flex-grow-1 p-3">
         <!-- Contenu principal -->
     </div>

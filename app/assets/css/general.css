@@ -102,7 +102,8 @@ html, body {
 }
 
 .navbar{
-    display: flex;
+    position: fixed;
+    z-index: 2.1;
     justify-content: flex-start;
 }
 
@@ -152,4 +153,7 @@ nav.navbar .nav-link:hover {
     .content {
         margin-top: 20px;
     }
+}
+.container {
+    margin-left: 220px; /* Décale le conteneur de 220px vers la droite */
 }
