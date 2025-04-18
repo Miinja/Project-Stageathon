@@ -1,64 +1,61 @@
 <?php
 session_start();
+require_once '../includes/DatabaseLinker.php';
+$db = DataBaseLinker::getConnexion();
 
 // Vérifiez si l'utilisateur est connecté
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['user_email'])) {
     header("Location: ../index.php");
     exit();
 }
-include 'includes/header.php'; ?>
+
+// Récupérer toutes les classes avec le nom des enseignants
+$query = "SELECT c.id, c.name, c.annee, t.nom as teacher_nom
+          FROM classes c 
+          LEFT JOIN teacher t ON c.teacher_id = t.id
+          ORDER BY c.name";
+$stmt = $db->prepare($query);
+$stmt->execute();
+$classes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+include 'includes/header.php'; 
+?>
 <link rel="stylesheet" href="assets/css/general.css">
 <div class="container mt-4">
-    <h2 class="text-center mb-4">Liste des Classes</h2>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Classe 1</h5>
-                    <p class="card-text">Description de la classe 1.</p>
-                </div>
-            </div>
+    <h2 class="text-center mb-4">📚 Liste des Classes</h2>
+    
+    <?php if (empty($classes)): ?>
+        <div class="alert alert-info">
+            <p class="text-center">Aucune classe n'est disponible pour le moment.</p>
         </div>
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Classe 2</h5>
-                    <p class="card-text">Description de la classe 2.</p>
+    <?php else: ?>
+        <div class="row">
+            <?php foreach ($classes as $classe): ?>
+                <div class="col-md-4">
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0"><?php echo htmlspecialchars($classe['name']); ?></h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><strong>Promotion :</strong> <?php echo htmlspecialchars($classe['annee']); ?></p>
+                            <p class="card-text"><strong>Enseignant :</strong> <?php echo htmlspecialchars($classe['teacher_nom'] ?? 'Non assigné'); ?></p>
+                            <a href="eleves.php?id=<?php echo $classe['id']; ?>" class="btn btn-sm btn-primary">
+                                <i class="fa fa-eye"></i> Voir les détails
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
         </div>
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Classe 3</h5>
-                    <p class="card-text">Description de la classe 3.</p>
-                </div>
-            </div>
+    <?php endif; ?>
+    
+    <?php if ($user_role === 'secretaire'): ?>
+        <div class="text-center mt-4">
+            <a href="add_classe.php" class="btn btn-success">
+                <i class="fa fa-plus"></i> Ajouter une classe
+            </a>
         </div>
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Classe 4</h5>
-                    <p class="card-text">Description de la classe 4.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Classe 5</h5>
-                    <p class="card-text">Description de la classe 5.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Classe 6</h5>
-                    <p class="card-text">Description de la classe 6.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php endif; ?>
+    
     <?php include 'includes/footer.php'; ?>
 </div>
